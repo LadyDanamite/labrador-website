@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Labrador Retrievers - Your Perfect Companion</title>
+    <meta name="description" content="Learn about Labrador Retrievers - their history, characteristics, care tips, and why they make wonderful family pets.">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #2c3e50;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #2c3e50;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: #e74c3c;
+        }
+
+        .hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), 
+                        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600"><rect fill="%23f39c12" width="1200" height="600"/><circle fill="%23e67e22" cx="300" cy="200" r="80"/><circle fill="%23e67e22" cx="900" cy="400" r="60"/><circle fill="%23e67e22" cx="600" cy="150" r="40"/></svg>');
+            background-size: cover;
+            background-position: center;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+        }
+
+        .hero-content h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .hero-content p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: #e74c3c;
+            color: white;
+            padding: 15px 30px;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(231, 76, 60, 0.3);
+        }
+
+        .cta-button:hover {
+            background: #c0392b;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(231, 76, 60, 0.4);
+        }
+
+        .section {
+            padding: 80px 0;
+            background: white;
+            margin: 20px 0;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .section h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: #2c3e50;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .feature-card {
+            background: #f8f9fa;
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid #e9ecef;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .feature-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: #2c3e50;
+        }
+
+        .colors-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .color-card {
+            text-align: center;
+            padding: 2rem;
+            border-radius: 15px;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .color-card.black { background: linear-gradient(135deg, #2c3e50, #34495e); }
+        .color-card.yellow { background: linear-gradient(135deg, #f39c12, #e67e22); }
+        .color-card.chocolate { background: linear-gradient(135deg, #8b4513, #a0522d); }
+
+        .color-card h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+        }
+
+        .care-tips {
+            background: #f8f9fa;
+            padding: 2rem;
+            border-radius: 15px;
+            margin-top: 2rem;
+        }
+
+        .care-tips h3 {
+            color: #2c3e50;
+            margin-bottom: 1rem;
+        }
+
+        .care-tips ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .care-tips li {
+            padding: 0.5rem 0;
+            border-bottom: 1px solid #e9ecef;
+            position: relative;
+            padding-left: 2rem;
+        }
+
+        .care-tips li:before {
+            content: "🐕";
+            position: absolute;
+            left: 0;
+        }
+
+        footer {
+            background: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 40px;
+        }
+
+        .social-links {
+            margin: 1rem 0;
+        }
+
+        .social-links a {
+            color: white;
+            text-decoration: none;
+            margin: 0 1rem;
+            font-size: 1.5rem;
+            transition: color 0.3s ease;
+        }
+
+        .social-links a:hover {
+            color: #e74c3c;
+        }
+
+        .name-generator-container {
+            max-width: 600px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .name-input-section {
+            background: #f8f9fa;
+            padding: 2rem;
+            border-radius: 15px;
+            margin-bottom: 2rem;
+        }
+
+        .name-input-section h3 {
+            color: #2c3e50;
+            margin-bottom: 1.5rem;
+            font-size: 1.5rem;
+        }
+
+        .input-group {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .input-group input {
+            padding: 12px 20px;
+            border: 2px solid #e9ecef;
+            border-radius: 25px;
+            font-size: 1rem;
+            width: 250px;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .input-group input:focus {
+            outline: none;
+            border-color: #e74c3c;
+            box-shadow: 0 0 0 3px rgba(231, 76, 60, 0.1);
+        }
+
+        .input-group button {
+            padding: 12px 25px;
+            border: none;
+            border-radius: 25px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .personalized-message {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 2rem;
+            border-radius: 15px;
+            animation: slideIn 0.5s ease-out;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .message-content {
+            text-align: center;
+        }
+
+        .message-content h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+        }
+
+        .message-content p {
+            font-size: 1.2rem;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+        }
+
+        .dog-emoji {
+            font-size: 3rem;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0);
+            }
+            40% {
+                transform: translateY(-10px);
+            }
+            60% {
+                transform: translateY(-5px);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero-content p {
+                font-size: 1.1rem;
+            }
+
+            .section h2 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="container">
+            <div class="logo">🐕 Labrador World</div>
+            <ul class="nav-links">
+                <li><a href="#about">About</a></li>
+                <li><a href="#colors">Colors</a></li>
+                <li><a href="#care">Care</a></li>
+                <li><a href="#name-generator">Name Generator</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Labrador Retrievers</h1>
+            <p>America's most popular dog breed for 30+ years</p>
+            <a href="#about" class="cta-button">Discover More</a>
+        </div>
+    </section>
+
+    <div class="container">
+        <section id="about" class="section">
+            <h2>Why Labradors Are Amazing</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">❤️</div>
+                    <h3>Loving & Loyal</h3>
+                    <p>Labradors are known for their gentle temperament and unwavering loyalty. They form strong bonds with their families and are excellent with children.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🏃‍♂️</div>
+                    <h3>Active & Energetic</h3>
+                    <p>These dogs love to play and exercise. They're perfect companions for active families who enjoy outdoor activities and adventures.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🎓</div>
+                    <h3>Highly Trainable</h3>
+                    <p>Labradors are intelligent and eager to please, making them one of the easiest breeds to train. They excel in obedience, agility, and service work.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🦆</div>
+                    <h3>Natural Retrievers</h3>
+                    <p>Originally bred for hunting, Labs have a natural instinct to retrieve. They love water and are excellent swimmers, making them perfect for water activities.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="colors" class="section">
+            <h2>Labrador Colors</h2>
+            <div class="colors-grid">
+                <div class="color-card black">
+                    <h3>Black Labrador</h3>
+                    <p>The most common and traditional color. Black Labs are elegant, shiny, and have a classic appearance that never goes out of style.</p>
+                </div>
+                <div class="color-card yellow">
+                    <h3>Yellow Labrador</h3>
+                    <p>Ranging from pale cream to golden fox red, yellow Labs are cheerful and bright. Their sunny disposition matches their beautiful coat.</p>
+                </div>
+                <div class="color-card chocolate">
+                    <h3>Chocolate Labrador</h3>
+                    <p>The rarest of the three colors, chocolate Labs have rich, warm brown coats. They're just as loving and energetic as their black and yellow siblings.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="care" class="section">
+            <h2>Labrador Care Guide</h2>
+            <div class="care-tips">
+                <h3>Essential Care Tips</h3>
+                <ul>
+                    <li>Provide 60-90 minutes of daily exercise to keep your Lab healthy and happy</li>
+                    <li>Feed high-quality dog food appropriate for their age and activity level</li>
+                    <li>Regular grooming helps manage shedding and keeps their coat healthy</li>
+                    <li>Early socialization and training are crucial for a well-behaved adult dog</li>
+                    <li>Regular veterinary check-ups and vaccinations are essential</li>
+                    <li>Provide plenty of mental stimulation through toys and interactive games</li>
+                    <li>Monitor their weight as Labs are prone to obesity</li>
+                    <li>Dental care is important - brush their teeth regularly</li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="name-generator" class="section">
+            <h2>Meet Your Labrador</h2>
+            <div class="name-generator-container">
+                <div class="name-input-section">
+                    <h3>What's your Labrador's name?</h3>
+                    <div class="input-group">
+                        <input type="text" id="dogNameInput" placeholder="Enter your dog's name..." maxlength="20">
+                        <button id="generateMessage" class="cta-button">Generate Message</button>
+                    </div>
+                </div>
+                <div id="personalizedMessage" class="personalized-message" style="display: none;">
+                    <div class="message-content">
+                        <h3 id="messageTitle"></h3>
+                        <p id="messageText"></p>
+                        <div class="dog-emoji">🐕</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <footer id="contact">
+        <div class="container">
+            <h3>Connect With Us</h3>
+            <div class="social-links">
+                <a href="#">📘 Facebook</a>
+                <a href="#">📷 Instagram</a>
+                <a href="#">🐦 Twitter</a>
+                <a href="#">📧 Email</a>
+            </div>
+            <p>&copy; 2024 Labrador World. All rights reserved.</p>
+            <p>🐕 Made with love for Labrador enthusiasts everywhere 🐕</p>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Add scroll effect to header
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('header');
+            if (window.scrollY > 100) {
+                header.style.background = 'rgba(255, 255, 255, 0.98)';
+            } else {
+                header.style.background = 'rgba(255, 255, 255, 0.95)';
+            }
+        });
+
+        // Add animation to feature cards on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe all feature cards
+        document.querySelectorAll('.feature-card, .color-card').forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(20px)';
+            card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(card);
+        });
+
+        // Dog name generator functionality
+        const dogNameInput = document.getElementById('dogNameInput');
+        const generateButton = document.getElementById('generateMessage');
+        const personalizedMessage = document.getElementById('personalizedMessage');
+        const messageTitle = document.getElementById('messageTitle');
+        const messageText = document.getElementById('messageText');
+
+        // Array of personalized messages
+        const messages = [
+            {
+                title: "Meet {name} - The Perfect Labrador!",
+                text: "{name} is an amazing Labrador who brings joy and happiness to everyone around. With their loyal heart and playful spirit, {name} embodies everything wonderful about this incredible breed. Whether it's fetching balls, swimming in the lake, or cuddling on the couch, {name} is the perfect companion for any adventure!"
+            },
+            {
+                title: "Say Hello to {name}!",
+                text: "Meet {name}, a beautiful Labrador with a heart full of love! This energetic pup loves to play fetch, go for long walks, and make new friends. {name} represents the best of what Labradors are known for - loyalty, intelligence, and endless affection. Every day with {name} is a new adventure waiting to happen!"
+            },
+            {
+                title: "{name} - A True Labrador Hero!",
+                text: "Here's {name}, a magnificent Labrador who captures the essence of this wonderful breed! With their gentle nature and boundless energy, {name} is always ready for fun and games. Whether they're retrieving toys, swimming like a champion, or simply being the best friend anyone could ask for, {name} truly shines as an example of Labrador excellence!"
+            },
+            {
+                title: "Welcome {name} to the Pack!",
+                text: "Meet {name}, an incredible Labrador who brings sunshine to every day! This lovable pup has all the traits that make Labradors so special - they're friendly, outgoing, and always eager to please. {name} loves nothing more than spending time with family, playing in the yard, and showing off their natural retrieving skills!"
+            },
+            {
+                title: "{name} - Labrador Royalty!",
+                text: "Introducing {name}, a regal Labrador with a heart of gold! This magnificent dog combines intelligence, loyalty, and playfulness in the perfect way. {name} is always ready for adventure, whether it's hiking through the woods, swimming in the ocean, or simply being the most loving companion you could ever wish for!"
+            }
+        ];
+
+        // Function to generate personalized message
+        function generatePersonalizedMessage() {
+            const dogName = dogNameInput.value.trim();
+            
+            if (!dogName) {
+                alert('Please enter your dog\'s name!');
+                return;
+            }
+
+            // Capitalize first letter of each word
+            const formattedName = dogName.split(' ').map(word => 
+                word.charAt(0).toUpperCase() + word.slice(1).toLowerCase()
+            ).join(' ');
+
+            // Get random message
+            const randomMessage = messages[Math.floor(Math.random() * messages.length)];
+            
+            // Replace placeholder with actual name
+            const personalizedTitle = randomMessage.title.replace('{name}', formattedName);
+            const personalizedText = randomMessage.text.replace(/{name}/g, formattedName);
+
+            // Display the message
+            messageTitle.textContent = personalizedTitle;
+            messageText.textContent = personalizedText;
+            personalizedMessage.style.display = 'block';
+
+            // Scroll to the message
+            personalizedMessage.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+
+        // Event listeners
+        generateButton.addEventListener('click', generatePersonalizedMessage);
+        
+        dogNameInput.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                generatePersonalizedMessage();
+            }
+        });
+
+        // Clear message when input changes
+        dogNameInput.addEventListener('input', function() {
+            if (personalizedMessage.style.display === 'block') {
+                personalizedMessage.style.display = 'none';
+            }
+        });
+    </script>
+</body>
+</html>
