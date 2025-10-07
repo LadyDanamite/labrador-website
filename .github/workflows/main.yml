@@ -1,1 +1,89 @@
 
+name: Deploy Labrador Website to S3
+
+on:
+  push:
+    branches: [ main, master ]
+  workflow_dispatch:  # Allow manual triggering
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Configure AWS credentials
+      uses: aws-actions/configure-aws-credentials@v4
+      with:
+        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        aws-region: ${{ secrets.AWS_REGION || 'us-east-1' }}
+        
+    - name: Create S3 bucket if it doesn't exist
+      run: |
+        aws s3 mb s3://${{ secrets.S3_BUCKET_NAME }} --region ${{ secrets.AWS_REGION || 'us-east-1' }} || echo "Bucket already exists"
+        
+    - name: Upload files to S3
+      run: |
+        echo "Uploading files to S3 bucket: ${{ secrets.S3_BUCKET_NAME }}"
+        
+        # Upload the main HTML file
+        aws s3 cp index.html s3://${{ secrets.S3_BUCKET_NAME }}/index.html \
+          --content-type "text/html" \
+          --cache-control "max-age=3600"
+        
+        # Upload other files (if any)
+        if [ -f "DEPLOYMENT.md" ]; then
+          aws s3 cp DEPLOYMENT.md s3://${{ secrets.S3_BUCKET_NAME }}/DEPLOYMENT.md \
+            --content-type "text/markdown"
+        fi
+        
+        echo "Files uploaded successfully!"
+        
+    - name: Configure S3 website hosting
+      run: |
+        echo "Configuring S3 static website hosting..."
+        
+        # Enable static website hosting
+        aws s3 website s3://${{ secrets.S3_BUCKET_NAME }} \
+          --index-document index.html \
+          --error-document index.html
+        
+        echo "Website hosting configured!"
+        
+    - name: Set bucket policy for public access
+      run: |
+        echo "Setting bucket policy for public read access..."
+        
+        # Create bucket policy JSON
+        cat > bucket-policy.json << EOF
+        {
+          "Version": "2012-10-17",
+          "Statement": [
+            {
+              "Sid": "PublicReadGetObject",
+              "Effect": "Allow",
+              "Principal": "*",
+              "Action": "s3:GetObject",
+              "Resource": "arn:aws:s3:::${{ secrets.S3_BUCKET_NAME }}/*"
+            }
+          ]
+        }
+        EOF
+        
+        # Apply bucket policy
+        aws s3api put-bucket-policy \
+          --bucket ${{ secrets.S3_BUCKET_NAME }} \
+          --policy file://bucket-policy.json || echo "Bucket policy already exists or permission denied"
+        
+        echo "Bucket policy applied!"
+          
+    - name: Output Website URL
+      run: |
+        echo "🚀 Website deployed successfully!"
+        echo "🌐 Your Labrador website is now live at:"
+        echo "https://${{ secrets.S3_BUCKET_NAME }}.s3-website-${{ secrets.AWS_REGION || 'us-east-1' }}.amazonaws.com"
+        echo ""
+        echo "📝 Deployment completed! Your Labrador website is ready to visit."
