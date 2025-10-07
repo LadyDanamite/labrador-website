@@ -1,4 +1,4 @@
-# 🐕 Labrador World Website
+# 🐕 Labrador World Website  
 
 A beautiful, modern website dedicated to Labrador Retrievers - America's most popular dog breed!
 
